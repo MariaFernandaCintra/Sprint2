@@ -2,6 +2,7 @@
 //Chamada da função cadastrar_usuario para a associação ao evento de envio do formulário
 document.getElementById("formulario-cadastro").addEventListener("submit", cadastrar_usuario);
 
+
 function cadastrar_usuario(event) {
 
   //previne o comportamento padrão do formulário, ou seja, impede que ele saja enviado e recarregue a página
