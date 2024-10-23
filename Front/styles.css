@@ -1,0 +1,112 @@
+* {
+  margin: 0; /*remove a margem padrão de todos os elementos */
+  padding: 0; /*remove o padding de todos os elementos */
+  box-sizing: border-box; /*Inclui bordas e preenchimentos no calculo da largura e altura do elementos*/
+}
+
+body {
+  /*Corpo*/
+  background-image: url(imagem_de_fundo.jpg); /*imagem de fundo*/
+  background-size: cover; /* Faz a imagem cobrir toda a área disponível */
+  background-position: center; /* Centraliza a imagem */
+  background-repeat: no-repeat; /* Evita que a imagem se repita */
+  height: 100vh; /* Faz com que o elemento ocupe 100% da altura da viewport */
+  color: rgb(0, 0, 0); /* Cor do texto, para contraste com a imagem */
+  font-family: Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+}
+
+header {
+    background-color: #e00000;
+    padding: 27px;
+    text-align: center;
+    width: 100%;
+    position: absolute;
+    top: 0;
+}
+
+main {
+  max-width: 400px;
+  margin: auto;
+  padding: 20px;
+  background-color: #e00000;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+main img {
+  /* Configurações da logo senai login */
+  position: absolute;
+  max-width: 170px;
+  top: 23%;
+  justify-content: center;
+}
+
+
+.telainicial{
+  max-width: 400px;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.formulario-login {
+  max-width: 400px;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.formulario-cadastro{
+  max-width: 400px;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.inputEmail {
+  /*Área email (cadastro)*/
+  background-color: #fcfcfc;
+  border-radius: 10px;
+  max-width: 250px;
+  text-align: center;
+  padding: 10px;
+  color: #000000;
+  margin-top: 2%;
+}
+
+.inputSenha {
+  /*Área senha (cadastro)*/
+  background-color: #fcfcfc;
+  border-radius: 10px;
+  max-width: 250px;
+  text-align: center;
+  padding: 10px;
+  color: #000000;
+  margin-top: 2%;
+}
+
+.inputNome {
+  /*Área nome completo (cadastro)*/
+  background-color: #fcfcfc;
+  border-radius: 10px;
+  max-width: 250px;
+  text-align: center;
+  padding: 10px;
+  color: #000000;
+  margin-top: 2%;
+}
+
+footer {
+    background-color: #e00000;/*cor de fundo*/
+    color: #5e5e5e;
+    padding: 13px;
+    position: absolute;
+    text-align: center; /*alinha o texto no radapé da tela */
+    bottom: 0;/*A linha do rodapé abaixo da página */
+    position: absolute;/*Posiciona o radapé de forma absoluta em relação ao body*/
+    width: 100%;/*Define a largura do rodapé como 100% da janela de vizualização*/
+  }
