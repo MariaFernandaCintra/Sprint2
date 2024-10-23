@@ -3,6 +3,11 @@ document.addEventListener("DOMContentLoaded", function(){
     //Chamada da função cadastrar_usuario para a associação ao evento de envio do formulário
     
 
+<<<<<<< HEAD
+=======
+
+function cadastrar_usuario(event) {
+>>>>>>> 8974eb2d6606863ce05c6a137a917915e0ca9b7c
 
 
     function cadastrar_usuario(event) {
