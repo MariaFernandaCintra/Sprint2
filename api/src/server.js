@@ -1,20 +1,17 @@
-//Importa a instância do Express configurada em index.js
 const app = require("./index");
 const cors = require('cors');
 
-//configuração do cors com origens permitidas
 const corsOptions = {
-    origin: '*', //substitua pela origem permitida
-    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE', //metodos http permitidos 
-    crendentials: true, //permite o uso de cookies e credenciais 
-    optionsSucessStatus: 204, //define o statusde resposta para o metodo OPTIONS
+    origin: '*', // Substitua pela origem permitida se necessário
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE', // Corrigido aqui para 'PATCH' em vez de 'PATH'
+    credentials: true, // Permite o uso de cookies e credenciais
+    optionsSuccessStatus: 204, // Define o status de resposta para o método OPTIONS
 };
 
-//Inicia o servidor na porta 5000, tornando a API acessível em http://localhost:5000
+// Aplicando o middleware CORS no app
 app.use(cors(corsOptions));
-app.listen(5000);
 
-
-// http://localhost:5000/api/v1/user
-
-//http://localhost:5000/api/v1//organizador
+// Inicia o servidor na porta 5000
+app.listen(5000, () => {
+    console.log('Servidor rodando em http://localhost:5000');
+});

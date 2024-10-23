@@ -1,16 +1,9 @@
-const router = require('express').Router()
+const router = require("express").Router();
 
-const organizadorController = require('../controllers/organizadorController');
-const userController = require("../controllers/userController")
+const usuario_controller = require("../controllers/usuario_controller");
 
-router.post("/user", userController.createUser);
-router.get("/user", userController.getAllUsers);
-router.put("/user", userController.updateUser);
-router.delete("/user/:id", userController.deleteUser);
+router.post('/usuario_cadastro', usuario_controller.cadastrar_usuario);
+router.post('/usuario_login', usuario_controller.login_usuario);
 
-router.post("/organizador", organizadorController.createOrganizador);
-router.get("/organizador", organizadorController.getAllOrganizadores);
-router.put("/organizador", organizadorController.updateOrganizador);
-router.delete("/organizador/:id", organizadorController.deleteOrganizador);
 
-module.exports = router
+module.exports = router;

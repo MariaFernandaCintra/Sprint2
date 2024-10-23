@@ -1,18 +1,25 @@
 {
-  "name": "backend",
+  "name": "sprint1",
   "version": "1.0.0",
-  "description": "Criando um Crud de usuarios ",
+  "description": "1º Parte do Back-End da Sprint",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node src/server.js"
   },
-  "author": "Maria Fernanda Campos Cintra",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/livyamv/SPRINT1.git"
+  },
+  "author": "Lívia",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/livyamv/SPRINT1/issues"
+  },
+  "homepage": "https://github.com/livyamv/SPRINT1#readme",
   "dependencies": {
-    "axios": "^1.7.7",
     "cors": "^2.8.5",
-    "express": "^4.21.0",
+    "express": "^4.19.2",
     "mysql2": "^3.11.3"
   }
 }

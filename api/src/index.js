@@ -1,27 +1,30 @@
-const express = require("express"); //Importa o módulo Express
-const cors = require("cors");
-const testeConnect = require("./db/testConnect");
+const express = require("express"); //Importa o express
 
+const test_connect = require('./db/test_connect')
+
+//Define uma classe para organizar a lógica de aplicação
 class AppController {
-  //Define uma classe para organizar a lógica da aplicação
   constructor() {
-    this.express = express(); //Cria uma nova instância do Express dentro da classe
-    this.middlewares(); //Chama o método middlewares para configurar os middlewares
-    this.routes(); //Chama o método routes para definir as rotas da API
-    testeConnect();
+    //Cria uma nova instância do Express dentro da classe
+    this.express = express();
+    //Chama o método middlewares para configurar os middlewares
+    this.middlewares();
+    //Chama o método routes para definir as rotas da Api
+    this.routes();
+    test_connect();
   }
 
   middlewares() {
-    //Permite que a aplicação receba dados no formato JSON nas requisições
+    //Permitir que a aplicação receba dados em formato JSON nas requisições
     this.express.use(express.json());
-    this.express.use(cors());
   }
-
+  
+  //Rotas da API
   routes() {
-    const apiRoutes = require('./routes/apiRoutes')
-    this.express.use('/api/v1/',apiRoutes);// Definição da URL Base
+    const apiRoutes = require("./routes/apiRoutes"); //URL base
+    this.express.use("/Agenda-Senai/api/v1/", apiRoutes);
   }
 }
 
-//Exporta a instância do Express configurada, tornando-a acessível em outros arquivos
+//Exportando a instância de Express configurada, para que seja acessada em outros aquivos
 module.exports = new AppController().express;
