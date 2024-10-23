@@ -1,17 +1,16 @@
 const app = require("./index");
+
 const cors = require('cors');
 
-const corsOptions = {
-    origin: '*', // Substitua pela origem permitida se necessário
-    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE', // Corrigido aqui para 'PATCH' em vez de 'PATH'
-    credentials: true, // Permite o uso de cookies e credenciais
-    optionsSuccessStatus: 204, // Define o status de resposta para o método OPTIONS
+const corsOpitions = {
+    origin: '*', //Substitua pela origem permitida
+    methods: 'GET,HEAD,PUT,PATH.POST,DELETE', //Métodos HTTP permitidos
+    credentials: true, //Permite o uso de cookies e credenciais
+    optionsSuccessStatus: 204, //Define o status de resposta para o método OPTIONS
 };
 
-// Aplicando o middleware CORS no app
-app.use(cors(corsOptions));
+//Aplicando o middleware CORS no app
+app.use(cors(corsOpitions));
+//Inicia o servidor na porta 5000, tornando a API acessível em http://localhost:5000
 
-// Inicia o servidor na porta 5000
-app.listen(5000, () => {
-    console.log('Servidor rodando em http://localhost:5000');
-});
+app.listen(5000);

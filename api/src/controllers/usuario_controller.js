@@ -48,7 +48,7 @@ module.exports = class usuario_controller {
     }
   }
   static async login_usuario(req, res){
-    const { email, senha} = req.body;
+    const {email, senha} = req.body;
 
     if ( !email || !senha) {
       return res
@@ -57,9 +57,9 @@ module.exports = class usuario_controller {
     } else if (!email.includes("@")) {
       return res.status(400).json({ error: "Email inválido. Deve conter @" });
     }
-    let query = `SELECT * FROM usuario WHERE email=?`
+    let query = `SELECT * FROM usuario WHERE email=?;`
     const email_check = [email];
-    const senha_check = [senha];
+    
     try{
         connect_database.query(query, email_check, function(err, results){ //"results" é um booleano, então ele retornará "true" ou "false"
            if(err){
@@ -69,15 +69,16 @@ module.exports = class usuario_controller {
                 error: "Erro interno do servidor :("
             });
            } 
-           if(!results){
+           if(results.length === 0){
             return res.status(400).json({
               error: "O email informado está incorreto ou não se encontra cadastrado no sistema"
             });
            }
            return res.status(200);
         });
-        query = `SELECT * FROM usuario WHERE email=?, senha=?`
-        connect_database.query(query,email_check, senha_check, function(err, results){
+        query = `SELECT * FROM usuario WHERE email=? AND senha=?;`
+        const senha_check = [email, senha];
+        connect_database.query(query, senha_check, function(err, results){
           if(err){
             console.error(err);
             console.log(err.code);
@@ -85,12 +86,14 @@ module.exports = class usuario_controller {
                 error: "Erro interno do servidor :("
             });
           }
-          if(!results){
+          if(results.length === 0){
             return res.status(400).json({
               error: "A senha informada está incorreta"
             });
           }
-          return 
+          return res.status(200).json({
+            message: "Login efetuado."
+          });
         });
     }
     catch(error){

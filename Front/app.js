@@ -7,7 +7,7 @@ function cadastrar_usuario(event) {
   //previne o comportamento padrão do formulário, ou seja, impede que ele saja enviado e recarregue a página
   event.preventDefault();
   //Captura os valores dos compos de formulario
-  const nome = document.getElementById("nome").value;
+  const nome_usuario = document.getElementById("nome").value;
   const email = document.getElementById("email").value;
   const senha = document.getElementById("senha").value;
   const check_senha = document.getElementById("check_senha").value;
@@ -21,7 +21,7 @@ function cadastrar_usuario(event) {
       "Content-Type": "application/json",
     },
     //Transforma os dados do formulário em uma string json para serem emviados no corpo da requisição
-    body: JSON.stringify({ nome, senha, email, check_senha }),
+    body: JSON.stringify({ nome_usuario, senha, email, check_senha }),
   })
     .then((response) => {
       //Tratamento da resposta do servidor / API
@@ -36,7 +36,7 @@ function cadastrar_usuario(event) {
       });
     }) //fechamento da then(response)
     .then((data) => {
-      //Executa a resposta de sucesso -retorna ao usário final
+      //Executa a resposta de sucesso -retorna ao usuário final
       //Exibe um alerta para o usuário final(front) com o nome do usuário que acabou de ser cadastrado
       //alert("Usuário cadastrado com sucesso! " + data.user.name);
       alert(data.message);
