@@ -113,25 +113,97 @@ module.exports = class usuario_controller {
       res.status(500).json({error: " Erro interno do servidor"});
     }
   }
-  static async update_usuario(req, res) {
+  static async alterar_senha_usuario(req, res) {
+
     const {id, senha, nova_senha} = req.body;
 
     if(!id, !senha, !nova_senha){
       res.status(400).json({error: " todos os campos devem ser preenchidos"})
     }
 
-    const query = `SELECT * FROM usuario WHERE id = ?`
+    let query = `SELECT * FROM usuario WHERE id = ?;`
 
-    connect_database.query(query, id, function(err, results){
-      if(err){
-        console.error(err);
-        console.log(err.code);
-        return res.status(500).json({
+    try{
+      connect_database.query(query, id, function(err, results){
+        if(err){
+          console.error(err);
+          console.log(err.code);
+          return res.status(500).json({
+              error: " Erro interno do servidor :("
+          });
+         } 
+        if(results.senha !== senha){
+          return res.status(400).json({error: " senha incorreta"});
+        }
+        else {
+          query = `UPDATE usuario SET senha = ? WHERE id_usuario = ?;`;
+
+          connect_database.query(query, nova_senha && id, function(err, results){
+            if(err){
+              console.error(err);
+              console.log(err.code);
+              return res.status(500).json({
+                  error: " Erro interno do servidor :("
+              });
+             }
+             return res.status(200).json({message: " Senha alterada com sucesso"});
+          });
+        }
+      })
+    }
+    catch(error){
+      console.error(error);
+      res.status(500).json({error: " Erro interno do servidor"});
+    }
+  }
+  static async deletar_conta_usuario(req, res){
+    const id = req.params.id;
+    const query = `DELETE FROM usuario WHERE id = ?;`
+    try{
+      connect_database.query(query, id, function(err, results){
+        if(err){
+          console.error(err);
+          console.log(err.code);
+          return res.status(500).json({
             error: " Erro interno do servidor :("
+          });
+        }
+        if(results.affectedRows === 0){
+          return res.status(404).json({
+            error:" Usuário não encontrado"
+          });
+        }
+        return res.status(200).json({
+          message:" Usuário excluído com sucesso"
         });
-       } 
-       if(results.senha !== )
-    })
+      });
+    }
+    catch(error){
+      console.error(error);
+      res.status(500).json({error: " Erro interno do servidor"});
+    }
+  }
+  
+  static async get_todos_usuario(req, res){
+    const query = `SELECT * FROM USUARIO;`;
+    try{
+      connect_database.query(query, function(err, results){
+        if(err){
+          console.error(err);
+          console.log(err.code);
+          return res.status(500).json({
+            error: " Erro interno do servidor :("
+          });
+        }
+        else{
+          res.status(200).json({message: " Lista de todos os usuários:", usuarios: results});
+        }
+      });
+    }
+    catch(error){
+      console.error(error);
+      res.status(500).json({error: " Erro interno do servidor"});
+    }
   }
 };
 
