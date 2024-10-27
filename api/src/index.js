@@ -21,7 +21,7 @@ class AppController {
     this.express.use(express.json());
     this.express.use(cors());
   }
-  
+
   //Rotas da API
   routes() {
     const apiRoutes = require("./routes/apiRoutes"); //URL base

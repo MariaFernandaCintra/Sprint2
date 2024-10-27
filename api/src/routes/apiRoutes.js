@@ -1,5 +1,8 @@
+/*este arquivo contém todas as rotas necessárias para a realização das funções da api*/
+
 const router = require("express").Router();
 
+//requere a classe 'usuario_controller'
 const usuario_controller = require("../controllers/usuario_controller");
 
 router.post('/usuario_cadastro', usuario_controller.cadastrar_usuario);
