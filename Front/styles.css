@@ -45,42 +45,87 @@ main {
 }
 
 .button-container, .form-acao {
+  position: relative;
+  z-index: 2;
   display: flex;
   flex-direction: column;
   gap: 10px;
+  top: 70x;
   align-items: center;
+  
 }
+  .form-acao2{
+    position: relative;
+    z-index: 3;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    color: #151313;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
 
 button,
 input[type="submit"] {
   padding: 10px 15px;
   border: none;
   border-radius: 5px;
-  background-color: #919191;
-  color: #fff;
+  background-color: #ffffff;
+  color: #151313;
   cursor: pointer;
   transition: background-color 0.3s;
 }
 
 button:hover,
 input[type="submit"]:hover {
-  background-color: #676767;
+  background-color: #cbc9c9;
 }
 
 .form-grupo {
+  position: relative;
+  z-index: 2;
   display: flex;
   flex-direction: column;
   margin-bottom: 15px;
   background-color: rgb(208, 208, 208); 
-  
+  top: 55px;
 }
 
-.retangulo{
-  width: 300px;
-  height: 150px;
+.retangulo_index{
+  width: 200px;
+  height: 120px;
+  top: -90px;
+  position: relative;
+  z-index: 1;
+  display: flex;
   background-color: #f30000;
-  position: absolute;
+  align-items: center;
+  border-radius: 25px;
 
+}
+
+.retangulo_login{
+  height: 200px;
+  top: -150px;
+  max-width: 4000px;
+  position: relative;
+  z-index: 1;
+  display: flex;
+  background-color: #f30000;
+  align-items: center;
+  border-radius: 25px;
+}
+
+.retangulo_cadastro{
+  height: 200px;
+  top: -100px;
+  max-width: 350px;
+  position: relative;
+  z-index: 1;
+  display: flex;
+  background-color: #f30000;
+  align-items: center;
+  border-radius: 25px;
 }
 
 footer {
