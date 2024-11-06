@@ -19,11 +19,15 @@ module.exports = class usuario_controller {
       return res
         .status(400)
         .json({ error: "as senhas não coincidem (não estão iguais)" });
+    } else {
+      check_email = email.split("@");
+      if(check_email[1] !== "docente.senai.br"){
+        return res.status(400).json({error: "Somente docentes podem se cadastrar"});
+      }
     }
     //fim da filtragem
 
     //query que insere os dados obtidos na tabela "usuario" como um registro
-    else {
       const query = `INSERT INTO usuario (senha, email, nome_usuario) VALUES( 
                 '${senha}', 
                 '${email}', 
@@ -54,7 +58,6 @@ module.exports = class usuario_controller {
         console.error(error);
         res.status(500).json({ error: "Erro interno do servidor" });
       }
-    }
   }
 
   //função que permite o acesso do usuário ao sistema, inserindo suas credenciais.
@@ -104,10 +107,10 @@ module.exports = class usuario_controller {
 
   //função que altera a senha do usuário caso o mesmo o desejar.
   static async alterar_senha_usuario(req, res) {
-    const { id, senha, nova_senha } = req.body;
+    const { id_usuario, senha, nova_senha } = req.body;
 
     //filtragem de dados
-    if ((!id, !senha, !nova_senha)) {
+    if ((!id_usuario, !senha, !nova_senha)) {
       res.status(400).json({ error: " todos os campos devem ser preenchidos" });
     }
     //fim da filtragem
@@ -116,7 +119,7 @@ module.exports = class usuario_controller {
 
     try {
       //encontra a senha atual do usuário pelo seu id e descobre se a senha que ele digitou coincide
-      connect_database.query(query, [id], function (err, results) {
+      connect_database.query(query, [id_usuario], function (err, results) {
         if (err) {
           console.error(err);
           console.log(err.code);
@@ -125,18 +128,16 @@ module.exports = class usuario_controller {
           });
         }
         if (results[0].senha !== senha) {
-          return res
-            .status(400)
-            .json({
-              error: " senha incorreta"
-            });
+          return res.status(400).json({
+            error: " senha incorreta",
+          });
         } else {
           //substitui (atualiza) a senha do usuário pela nova senha digitada por ele.
           query = `UPDATE usuario SET senha = ? WHERE id_usuario = ?;`;
 
           connect_database.query(
             query,
-            [nova_senha ,id],
+            [nova_senha, id_usuario],
             function (err, results) {
               if (err) {
                 console.error(err);
@@ -168,16 +169,16 @@ module.exports = class usuario_controller {
           console.error(err);
           console.log(err.code);
           return res.status(500).json({
-            error: " Erro interno do servidor :("
+            error: " Erro interno do servidor :(",
           });
         }
         if (results.affectedRows === 0) {
           return res.status(404).json({
-            error: " Usuário não encontrado"
+            error: " Usuário não encontrado",
           });
         } else {
           return res.status(200).json({
-            message: " Usuário excluído com sucesso"
+            message: " Usuário excluído com sucesso",
           });
         }
       });
@@ -199,12 +200,10 @@ module.exports = class usuario_controller {
             error: " Erro interno do servidor :(",
           });
         } else {
-          res
-            .status(200)
-            .json({
-              message: " Lista de todos os usuários:",
-              usuarios: results,
-            });
+          res.status(200).json({
+            message: " Lista de todos os usuários:",
+            usuarios: results,
+          });
         }
       });
     } catch (error) {
